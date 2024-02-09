@@ -15,7 +15,7 @@ def get_long_description(file_path="README.md"):
         content = file.read()
         return content
 
-project_name="machine_learning_project_name"
+project_name="SMS_spam_classification"
 __version__="0.0.1"
 AUTHOR_NAME = "Linkan Kumar Sahu"
 AUTHOR_EMAIL = "sahulinkan7@gmail.com"

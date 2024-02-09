@@ -1,0 +1,7 @@
+artifacts_root: artifacts
+
+data_ingestion:
+  root_dir: artifacts/data_ingestion
+  source_url: https://archive.ics.uci.edu/dataset/228/sms+spam+collection
+  downloaded_data_filepath: artifacts/data_ingestion/downloaded_data/data.zip
+  extracted_data_filepath: artifacts/data_ingestion/extracted_data/sms_spam.csv 

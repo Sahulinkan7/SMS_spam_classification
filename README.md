@@ -1,1 +1,1 @@
-# machine_learning_project_template
+SMS spam classification NLP project based on Machine Learning
