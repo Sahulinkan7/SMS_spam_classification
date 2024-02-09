@@ -1,0 +1,9 @@
+pandas
+numpy
+notebook
+pyYAML
+mlflow
+seaborn
+scikit-learn
+dvc
+-e .
