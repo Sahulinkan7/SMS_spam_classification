@@ -4,3 +4,4 @@ from src.entity.config_entity import DataIngestionConfig
 dconfig=DataIngestionConfig()
 di=DataIngestion(data_ingestion_config=dconfig)
 di.download_data()
+di.extract_data()

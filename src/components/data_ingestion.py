@@ -3,6 +3,8 @@ from src.logger import logging
 from src.entity.config_entity import DataIngestionConfig
 import os,sys
 import urllib.request as request
+from zipfile import ZipFile
+import pandas as pd
 
 class DataIngestion:
     def __init__(self,data_ingestion_config : DataIngestionConfig):
@@ -26,4 +28,25 @@ class DataIngestion:
             
         except Exception as e:
             logging.error(f"Downloading data failed due to {CustomException(e,sys)}")
+            raise CustomException(e,sys)
+    
+    def extract_data(self):
+        try:
+            logging.info(f"Extracting data from download folder")
+            os.makedirs(os.path.dirname(self.data_ingestion_config.extracted_file_path),exist_ok=True)
+            
+            with ZipFile(self.data_ingestion_config.downloaded_file_path,'r') as zipreference:
+                print(zipreference.namelist())
+                if 'SMSSpamCollection' in zipreference.namelist():
+                    zipreference.extract('SMSSpamCollection',
+                                     path=self.data_ingestion_config.extracted_file_path)
+                    
+            with open(os.path.join(self.data_ingestion_config.extracted_file_path,'SMSSpamCollection'),'r') as file:
+                rows = file.readlines()
+                newdf = pd.DataFrame(data=rows,columns=['spam/ham','sms_content'])
+                newdf.to_csv(self.data_ingestion_config.extracted_file_path)
+                
+            logging.info(f"Data extracted successfully")
+        except Exception as e:
+            logging.error(f"Extracting downloaded data failed due to {CustomException(e,sys)}")
             raise CustomException(e,sys)
