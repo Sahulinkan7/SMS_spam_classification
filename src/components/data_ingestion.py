@@ -43,7 +43,9 @@ class DataIngestion:
                     
             with open(os.path.join(self.data_ingestion_config.extracted_file_path,'SMSSpamCollection'),'r') as file:
                 rows = file.readlines()
-                newdf = pd.DataFrame(data=rows,columns=['spam/ham','sms_content'])
+                for i in rows:
+                    pass
+                newdf = pd.concat(spam,sms,axis=1)
                 newdf.to_csv(self.data_ingestion_config.extracted_file_path)
                 
             logging.info(f"Data extracted successfully")
